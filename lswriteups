@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+
+import argparse
+import asyncio
+from check_ctf import get_url
+from find_writeups import original_writeups
+from common import colors
+
+
+async def main():
+    """Drives this whole thing"""
+    parser = argparse.ArgumentParser(description="Easily get those precious writeups")
+
+    maingroup = parser.add_argument_group(title='required any one of them')
+
+    group = maingroup.add_mutually_exclusive_group(required=True)
+    group.add_argument("-n", "--name", help="search for writeups by CTF name")
+    group.add_argument("-l", "--link", help="search for writeups by CTF url")
+
+    args = parser.parse_args()
+
+    # when a direct link to tasks is given
+    if args.link and args.link.endswith('tasks/'):
+        writeups = await original_writeups(args.link)
+        print(colors(writeups, 32))
+
+    # When a name of the event is given
+    else:
+        tasks = await get_url(args.name)
+        if tasks:
+            writeups = await original_writeups(tasks)
+            if writeups:
+                print(colors(writeups, 32))
+
+
+if __name__ == "__main__":
+    LOOP = asyncio.get_event_loop()
+    LOOP.run_until_complete(main())
