@@ -4,9 +4,9 @@ A simple CLI tool to get the links of original writeups from [ctftime.org](https
 
 If you paritcipate in CTFs and use ctftime for reading the writeups of tasks you couldn't solve, then you'll understand the pain it is to read a single writeup. If not then go to [ctftime](https://ctftime.org) and feel the pain :smirk:
 
-This tool get's you all those beautifully written `original writeups` link so you can easily read them.
+This tool get you all those beautifully written `original writeups` link so you can easily read them.
 
-Selection of writeups are done on the basis of the rating given to them, if all the writeups have the same rating then the link of the first writeup selected
+Selection of writeups are done on the basis of the rating given to them, if all the writeups have the same rating then the link of the first writeup is selected.
 
 ### Usage
 
@@ -52,7 +52,7 @@ __NOTE__: If you have cloned the repo in some other directory then use that path
 
 ### Known issue
 
-* This is pretty slow because there are lots of places where a GET requests is send so it will be effected by the speed of your connection.
+* This is pretty slow because there are lots of places where a GET requests is send so it will be affected by the speed of your connection.
 
 If you have any suggestion for improving this or if you find any bug then feel free to open an issue.
 
