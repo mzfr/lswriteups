@@ -22,7 +22,7 @@ async def main():
     # when a direct link to tasks is given
     if args.link and args.link.endswith('tasks/'):
         writeups = await original_writeups(args.link)
-        print(colors(writeups, 32))
+        print(colors(writeups, 34))
 
     # When a name of the event is given
     else:
@@ -30,7 +30,7 @@ async def main():
         if tasks:
             writeups = await original_writeups(tasks)
             if writeups:
-                print(colors(writeups, 32))
+                print(colors(writeups, 34))
 
 
 if __name__ == "__main__":
