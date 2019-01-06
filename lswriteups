@@ -3,6 +3,7 @@
 import argparse
 import asyncio
 from check_ctf import get_url
+from check_ctf import show_prev_events
 from find_writeups import original_writeups
 from common import colors
 
@@ -16,8 +17,13 @@ async def main():
     group = maingroup.add_mutually_exclusive_group(required=True)
     group.add_argument("-n", "--name", help="search for writeups by CTF name")
     group.add_argument("-l", "--link", help="search for writeups by CTF url")
-
+    group.add_argument("-r", "--random", help="Show last 10 CTF",  action='store_true')
     args = parser.parse_args()
+
+    if args.random:
+        url = await show_prev_events()
+        writeups = await original_writeups(url)
+        print(colors(writeups, 34))
 
     # when a direct link to tasks is given
     if args.link and args.link.endswith('tasks/'):
@@ -25,7 +31,7 @@ async def main():
         print(colors(writeups, 34))
 
     # When a name of the event is given
-    else:
+    if args.name:
         tasks = await get_url(args.name)
         if tasks:
             writeups = await original_writeups(tasks)

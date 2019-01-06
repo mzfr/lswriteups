@@ -17,8 +17,8 @@ async def past_events():
     trs = soup.find_all("tr")
     trs.pop(0)
     for ctf in trs:
-        link = ctf.find('a').get('href')
-        name = ctf.find('a').text
+        link = ctf.find("a").get("href")
+        name = ctf.find("a").text
         past[name.lower()] = link
 
     return past
@@ -49,7 +49,7 @@ async def get_url(name):
             eg: https://ctftime.org/event/683/tasks/
     """
 
-    spinner = Halo(text="Finding the URL", spinner='moon', color='red')
+    spinner = Halo(text="Finding the URL", spinner="moon", color="red")
     spinner.start()
     past_ctfs = await past_events()
     ctfs = get_event(past_ctfs, name)
@@ -60,14 +60,27 @@ async def get_url(name):
 
     if len(ctfs) != 1:
         spinner.stop()
-        tables = [i['name'] for i in ctfs]
-        question = [inquirer.List('choice', message="Choose one from below?", choices=tables)]
+        tables = [i["name"] for i in ctfs]
+        question = [
+            inquirer.List("choice", message="Choose one from below?", choices=tables)
+        ]
         answer = inquirer.prompt(question)
 
         # Compare answer with name of CTF to get a link
-        choice = list(filter(lambda ctf: ctf['name'] == answer['choice'], ctfs))
-        url = ROOT_URL + choice[0]['link'] + "/tasks/"
+        choice = list(filter(lambda ctf: ctf["name"] == answer["choice"], ctfs))
+        url = ROOT_URL + choice[0]["link"] + "/tasks/"
         return url
 
     spinner.succeed("Got it")
     return ROOT_URL + ctfs[0]["link"] + "/tasks/"
+
+
+async def show_prev_events():
+    events = await past_events()
+    ctfs = [i for i in events.keys()]
+    question = [
+        inquirer.List("choice", message="Choose one from below?", choices=ctfs[:10])
+    ]
+    answer = inquirer.prompt(question)
+
+    return ROOT_URL + events[answer["choice"]] + "/tasks/"
