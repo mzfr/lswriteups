@@ -38,4 +38,4 @@ async def make_soup(url):
 
 def colors(string, color):
     """Makes thing color full :)"""
-    return "\033[1;%sm%s\033[0m" % (color, string)
+    return "\033[%sm%s\033[0m" % (color, string)

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import argparse
 import asyncio
 from check_ctf import get_url
@@ -9,7 +7,8 @@ from common import colors
 
 
 async def main():
-    """Drives this whole thing"""
+    """Main function to handle all the process
+    """
     parser = argparse.ArgumentParser(description="Easily get those precious writeups")
 
     maingroup = parser.add_argument_group(title='required any one of them')
@@ -23,12 +22,12 @@ async def main():
     if args.random:
         url = await show_prev_events()
         writeups = await original_writeups(url)
-        print(colors(writeups, 34))
+        print(colors(writeups, 32))
 
     # when a direct link to tasks is given
     if args.link and args.link.endswith('tasks/'):
         writeups = await original_writeups(args.link)
-        print(colors(writeups, 34))
+        print(colors(writeups, 32))
 
     # When a name of the event is given
     if args.name:
@@ -36,7 +35,7 @@ async def main():
         if tasks:
             writeups = await original_writeups(tasks)
             if writeups:
-                print(colors(writeups, 34))
+                print(colors(writeups, 32))
 
 
 if __name__ == "__main__":
