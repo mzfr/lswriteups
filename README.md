@@ -36,6 +36,21 @@ There is a choice, either you can enter the name of the CTF like `seccon` or `P.
 
 ### Installation
 
+* You can use `pip`
+
+```
+pip install git+https://github.com/mzfr/lswriteups#egg=lswriteups
+```
+
+* You can also use [pipsi](https://github.com/mitsuhiko/pipsi) to install
+```
+pipsi install git+https://github.com/mzfr/lswriteups#egg=lswriteups
+```
+
+__MANUAL__
+
+For manual installation and easy usage follow these steps:
+
 * You'll need python3 for this.
 * Clone this repo:
     - `git clone https://github.com/mzfr/lswriteups`
@@ -49,12 +64,6 @@ export PATH=$HOME/lswriteups:$PATH
 ```
 
 __NOTE__: If you have cloned the repo in some other directory then use that path in place of `/lswriteups`
-
-### Known issue
-
-* This is pretty slow because there are lots of places where a GET requests is send so it will be affected by the speed of your connection.
-
-If you have any suggestion for improving this or if you find any bug then feel free to open an issue.
 
 ### Say Thanks
 
