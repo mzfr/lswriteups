@@ -21,9 +21,7 @@ setuptools.setup(
     url="https://github.com/mzfr/lswriteups",
     install_requires=requirements,
     setup_requires=['setuptools>=38.6.0'],
-    scripts=[
-        'lswriteups/lswriteup'
-    ],
+    scripts=['lswriteups/lswriteup'],
     keywords='writeups',
 )
 

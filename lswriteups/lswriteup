@@ -2,10 +2,10 @@
 
 import argparse
 import asyncio
-from .check_ctf import get_url
-from .check_ctf import show_prev_events
-from .find_writeups import original_writeups
-from .common import colors
+
+from check_ctf import get_url, show_prev_events
+from common import colors
+from find_writeups import original_writeups
 
 
 async def main():
